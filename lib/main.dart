@@ -7,7 +7,7 @@ import 'package:workmanager/workmanager.dart';
 import 'ui/quran.dart';
 
 void callbackDispatcher() {
-  Workmanager.executeTask((task, inputData) async{
+  Workmanager().executeTask((task, inputData) async{
     print("service is called ! " + task.toString());
     await FeatchData.getPrayingTimes(false);
     return Future.value(true);
@@ -17,8 +17,8 @@ void callbackDispatcher() {
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-  Workmanager.initialize(callbackDispatcher, isInDebugMode: true);
-  Workmanager.registerPeriodicTask(
+  Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
+  Workmanager().registerPeriodicTask(
     "1",
     "Getting Praying Times",
     frequency: Duration(minutes: 15),
